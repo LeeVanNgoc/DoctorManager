@@ -5,7 +5,7 @@ let router = express.Router();
 let initWebRoutes = (app) => {
 	router.get("/", homController.getHomePage	);
 
-	router.get("/aboutNgoc", homController.getAboutPage);
+	router.get("/aboutMe", homController.getAboutPage);
 	//rest api
 	return app.use("/", router);
 }
