@@ -4,3 +4,5 @@
 Khoá học tham khảo tại HoiDanIt/ReacjsSern
 \
 UI của trang web phần lớn tham khảo tại Bookingcare.vn
+\
+Chúng ta sẽ thiết kế cơ sở dữ liệu có dạng các bảng như sau https://docs.google.com/spreadsheets/d/17iRpKy7jhwnwzixQA7Gkw_dKTeXdXRea-WyYDZVvXqk/edit?usp=sharing
