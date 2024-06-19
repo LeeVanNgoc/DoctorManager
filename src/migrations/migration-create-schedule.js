@@ -11,7 +11,7 @@ module.exports = {
       currentNumber: {
         type: Sequelize.INTEGER
       },
-	  maxNumber: {
+	    maxNumber: {
         type: Sequelize.INTEGER
       },
       date: {
@@ -20,7 +20,7 @@ module.exports = {
       timeType: {
         type: Sequelize.STRING
       },
-	  doctorId: {
+	    doctorId: {
         type: Sequelize.INTEGER
       },
       createdAt: {
