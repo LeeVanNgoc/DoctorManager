@@ -17,10 +17,10 @@ module.exports = {
       patientId: {
         type: Sequelize.INTEGER
       },
-	  date: {
+	    date: {
         type: Sequelize.DATE
       },
-	  timeType: {
+	    timeType: {
         type: Sequelize.STRING
       },
       createdAt: {
