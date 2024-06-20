@@ -5,9 +5,6 @@ import CRUDService from "../services/CRUDService";
 let getHomePage = async (req, res) => {
 	try {
 		let data = await db.User.findAll();
-		console.log('-------------------------');
-		console.log(data);
-		console.log('-------------------------');
 		return res.render('homePage.ejs', {
 			data: JSON.stringify(data)
 		});
@@ -32,9 +29,6 @@ let postCRUD = async (req, res) => {
 
 let displayGetCRUD = async (req, res) => {
 	let data = await CRUDService.getAllUser();
-	console.log('---------------------------------');
-	console.log(data);
-	console.log('---------------------------------');
 
 	return res.render('displayCRUD.ejs', {
 		dataTable: data
@@ -43,7 +37,6 @@ let displayGetCRUD = async (req, res) => {
 
 let getEditCRUD = async (req, res) => {
 	let userId = req.query.id;
-	console.log(userId);
 	if (userId) {
 		let userData = await CRUDService.getUserInfoById(userId);
 		
@@ -63,6 +56,18 @@ let putCRUD = async (req, res) => {
 		dataTable: allUser
 	});
 }
+
+let deleteCRUD = async (req, res) => {
+	let id = req.query.id;
+	if (id) {
+		await CRUDService.deleteUserById(id);
+		return res.send('Delele the user succeed!');
+	}
+	else {
+		return res.send('User not found!');
+	}
+	
+}
 // Quy tac object
 // Object: {
 // 	key: '',
@@ -75,5 +80,6 @@ module.exports = {
 	postCRUD: postCRUD,
 	displayGetCRUD: displayGetCRUD,
 	getEditCRUD: getEditCRUD,
-	putCRUD: putCRUD
+	putCRUD: putCRUD,
+	deleteCRUD: deleteCRUD
 }
