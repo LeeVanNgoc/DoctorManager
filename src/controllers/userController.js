@@ -20,9 +20,29 @@ let handleLogin = async (req, res) => {
 	});	
 }
 
+let handdleGetAllUser = async (req, res) => {
+	let id = req.body.id; //ALL, Id
+	if(!id){
+		return res.status(200).json({
+			errCode: 1,
+            message: 'Missing inputs parameter!',
+			users: []
+		})
+	}
+	let users = await userService.getAllUsers(id);
+
+	
+	return res.status(200).json({
+		errCode: 0,
+		errMessage: 'Ok',
+		users,
+		
+	})
+}
 
 module.exports = {
 	handleLogin: handleLogin,
+	handdleGetAllUser: handdleGetAllUser,
 }
 
 //check email exist
