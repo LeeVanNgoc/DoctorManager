@@ -20,7 +20,7 @@ let handleLogin = async (req, res) => {
 	});	
 }
 
-let handdleGetAllUser = async (req, res) => {
+let handleGetAllUser = async (req, res) => {
 	let id = req.query.id; //ALL, Id
 	if(!id){
 		return res.status(200).json({
@@ -39,10 +39,15 @@ let handdleGetAllUser = async (req, res) => {
 		
 	})
 }
-
+let handleCreateNewUser = async (req, res) => {
+	let message = await userService.creatrNewUser(req.body);
+	console.log(message);
+	return res.status(200).json(message);
+}
 module.exports = {
 	handleLogin: handleLogin,
-	handdleGetAllUser: handdleGetAllUser,
+	handleGetAllUser: handleGetAllUser,
+	handleCreateNewUser: handleCreateNewUser,
 }
 
 //check email exist
