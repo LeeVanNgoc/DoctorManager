@@ -138,8 +138,70 @@ let creatrNewUser = (data) => {
         }
     })
 }
+
+let deleteUser = async (userId) => {
+	return new Promise (async (resolve, reject) => {
+		let foundUser = await db.User.findOne({
+			where: {
+				id: userId
+			}
+		})
+		if (!foundUser) {
+			resolve({
+				errCode: 2,
+				errMessage: 'User not found',
+			})
+		}
+		await db.User.destroy({
+			where: {
+				id: userId
+			}
+		});
+		resolve({
+			errCode: 0,
+            errMessage: 'User was deleted!'
+		})
+	})
+}
+
+let updateUserData = (data) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			if (!data.id) {
+				resolve({
+					errCode: 2,
+					message: "Missing required parameters!"
+				})
+			}
+			let user = await db.User.findOne({
+				where: { id: data.id },
+				raw: false,
+			})
+			if (user) {
+				user.firstName = data.firstName;
+				user.lastName = data.lastName;
+				user.address = data.address;
+				await user.save();
+				
+				resolve({
+					errCode: 0,
+					message: "Update the user succeeds!"
+				});
+			} else {
+				resolve({
+					errCode: 1,
+                    message: "User not found!"
+				});
+			}
+		} catch (error) {
+			reject(error)
+		}
+	})
+}
 module.exports = {
 	handleUserLogin: handleUserLogin,
 	getAllUsers: getAllUsers,
 	creatrNewUser: creatrNewUser,
+	deleteUser: deleteUser,
+	updateUserData: updateUserData,
 }
